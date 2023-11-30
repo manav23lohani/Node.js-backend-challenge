@@ -5,7 +5,7 @@ const userAuth = require("../middlewares/userAuth");
 
 router.post("/signup",registerUser);
 router.post("/login",loginUser);
-router.post("/updateProfile", userAuth, updateProfile);
-router.get("/viewProfile", userAuth, viewProfile);
+router.post("/updateprofile", userAuth, updateProfile);
+router.get("/viewprofile", userAuth, viewProfile);
 
 module.exports = router;

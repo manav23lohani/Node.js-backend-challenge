@@ -1,13 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const Post = require("../models/postModel");
-const User = require("../models/userModel");
 
 const getPosts = asyncHandler(async (req, res) => {
-  // console.log(req.user);
-  const posts = await Post.find({ user_id: req.user.id });
-  const user = await User.findById(req.user.id);
-  const response = [...posts];
-  res.status(200).json(response);
+  const posts = await Post.find().populate('comments');
+  res.status(200).json(posts);
 });
 
 const createPost = asyncHandler(async (req, res) => {
@@ -22,8 +18,8 @@ const createPost = asyncHandler(async (req, res) => {
   const post = await Post.create({
     title,
     content,
-    creationDate: Date.now(),
-    user_id: req.user.id
+    createdAt: new Date().toISOString(),
+    userId: req.user.id
   });
   res.status(201).json(post);
 });

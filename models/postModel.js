@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-  user_id: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "User",
@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema({
   content: {
     type: String,
   },
-  creationDate: {
+  createdAt: {
     type: Date,
   },
   comments: [
